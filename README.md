@@ -1,52 +1,18 @@
-Hello JNI
-=========
-Hello JNI is an Android sample that uses JNI to call C code from a Android Java Activity.
+Reproducible example for auto install cmake from AGP
+====================================================
 
-This sample uses the new [Android Studio CMake plugin](http://tools.android.com/tech-docs/external-c-builds) with C++ support.
-For how to use Android Studio, refer to [Hello-CMake codelab](https://codelabs.developers.google.com/codelabs/android-studio-cmake/index.html)
+The example is based on [ndk-samples/hello-jni](https://github.com/android/ndk-samples/tree/7f6936ea044ee29c36b5c3ebd62bb3a64e1e6014/hello-jni). Check [commit history](https://github.com/Kudo/agp-cmake-install-issue/commits/main) for detailed changes.
 
-Pre-requisites
---------------
-- Android Studio 4.2+ with [NDK](https://developer.android.com/ndk/) bundle.
+## Test Steps
 
-Getting Started
----------------
-1. [Download Android Studio](http://developer.android.com/sdk/index.html)
-1. Launch Android Studio.
-1. Open the sample directory.
-1. Open *File/Project Structure.../SDK Location*, click *Download* or *Select NDK location*.
-1. Click *File/Sync Project with Gradle Files*.
-1. Click *Run/Run 'app'*.
+1. `sdkmanager --uninstall 'cmake;3.10.2.4988404' && sdkmanager --uninstall 'cmake;3.18.1' && sdkmanager --uninstall 'cmake;3.22.1'`
+2. `./gradlew :app:assembleDebug --no-daemon` and check whether cmake can be automatically installed.
+3. Update the [test combinations](https://github.com/Kudo/agp-cmake-install-issue/blob/f4465b6f21737db51faaeb6c53fb4f65d6c2fbd4/build.gradle#L6-L19) and start from step.1 until looping over all test cases.
 
-Screenshots
------------
-![screenshot](screenshot.png)
+# Result
 
-Support
--------
-If you've found an error in these samples, please [file an issue](https://github.com/googlesamples/android-ndk/issues/new).
-
-Patches are encouraged, and may be submitted by [forking this project](https://github.com/googlesamples/android-ndk/fork) and
-submitting a pull request through GitHub. Please see [CONTRIBUTING.md](../CONTRIBUTING.md) for more details.
-
-- [Stack Overflow](http://stackoverflow.com/questions/tagged/android-ndk)
-- [Android Tools Feedbacks](http://tools.android.com/feedback)
-
-License
--------
-Copyright 2022 Google, Inc.
-
-Licensed to the Apache Software Foundation (ASF) under one or more contributor
-license agreements.  See the NOTICE file distributed with this work for
-additional information regarding copyright ownership.  The ASF licenses this
-file to you under the Apache License, Version 2.0 (the "License"); you may not
-use this file except in compliance with the License.  You may obtain a copy of
-the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
-License for the specific language governing permissions and limitations under
-the License.
+|              | AGP 7.0 | AGP 7.1 | AGP 7.2 |
+| :----------: | :-----: | :-----: | :-----: |
+| CMake 3.10.2 |   ✅    |         |         |
+| CMake 3.18.1 |         |   ✅    |   ✅    |
+| CMake 3.22.1 |         |         |         |
