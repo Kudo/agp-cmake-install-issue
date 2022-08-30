@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
-    ndkVersion '22.1.7171670'
+    ndkVersion '24.0.8215888'
 
     defaultConfig {
         applicationId 'com.example.hellojni'
@@ -26,6 +26,7 @@ android {
     externalNativeBuild {
         cmake {
             path "src/main/cpp/CMakeLists.txt"
+            version rootProject.ext.cmake_version
         }
     }
 
