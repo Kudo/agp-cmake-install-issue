@@ -13,6 +13,6 @@ The example is based on [ndk-samples/hello-jni](https://github.com/android/ndk-s
 
 |              | AGP 7.0 | AGP 7.1 | AGP 7.2 |
 | :----------: | :-----: | :-----: | :-----: |
-| CMake 3.10.2 |   ✅    |         |         |
-| CMake 3.18.1 |         |   ✅    |   ✅    |
-| CMake 3.22.1 |         |         |         |
+| CMake 3.10.2 |   ✅    |   ❌    |   ❌    |
+| CMake 3.18.1 |   ❌    |   ✅    |   ✅    |
+| CMake 3.22.1 |   ❌    |   ❌    |   ❌    |
